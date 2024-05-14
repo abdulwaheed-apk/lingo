@@ -1,8 +1,15 @@
+'use client'
 import Image from 'next/image'
 import logo from '@/public/duolingo-logo.svg'
 import { ClerkLoaded, ClerkLoading } from '@clerk/nextjs'
 import { Loader } from 'lucide-react'
-import { SignedIn, UserButton } from '@clerk/clerk-react'
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton,
+    UserButton,
+} from '@clerk/clerk-react'
+import { Button } from '@/components/ui/button'
 export const Header = () => {
     return (
         <header className='h-20 w-full border-b-2 border-slate-200 px-4'>
@@ -15,8 +22,19 @@ export const Header = () => {
                 </ClerkLoading>
                 <ClerkLoaded>
                     <SignedIn>
-                        <UserButton />
+                        <UserButton afterSignOutUrl='/' />
                     </SignedIn>
+                    <SignedOut>
+                        <SignInButton
+                            mode='modal'
+                            signUpForceRedirectUrl={'/learn'}
+                            forceRedirectUrl={'/learn'}
+                        >
+                            <Button variant={'ghost'} size={'lg'}>
+                                Login
+                            </Button>
+                        </SignInButton>
+                    </SignedOut>
                 </ClerkLoaded>
             </div>
         </header>
