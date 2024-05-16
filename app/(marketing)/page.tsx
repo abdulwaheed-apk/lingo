@@ -22,7 +22,7 @@ const Home = () => {
                 <h1 className='text-xl lg:text-3xl font-bold text-neutral-600 max-w-[480px] text-center'>
                     The free, fun, and effective way to learn a language!
                 </h1>
-                <div>
+                <div className='flex flex-col items-center gap-y-3 max-w-[330px] w-full'>
                     <ClerkLoading>
                         <Loader className='w-5 h-5 text-muted-foreground animate-spin' />
                     </ClerkLoading>
