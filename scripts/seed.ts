@@ -12,6 +12,11 @@ const main = async () => {
         console.log('Seeding start')
         await db.delete(schema.courses)
         await db.delete(schema.userProgress)
+        await db.delete(schema.units)
+        await db.delete(schema.lessons)
+        await db.delete(schema.challenges)
+        await db.delete(schema.challengeOptions)
+        await db.delete(schema.challengeProgress)
 
         await db.insert(schema.courses).values([
             {
@@ -56,6 +61,32 @@ const main = async () => {
                 imgSrc: '/en.svg',
             },
         ])
+
+        await db.insert(schema.units).values([
+            {
+                id: 1,
+                courseId: 1, //Spanish
+                title: 'Unit 1',
+                description: 'Learn the basics of Spanish',
+                order: 1,
+            },
+        ])
+
+        await db.insert(schema.lessons).values([
+            {
+                id: 1,
+                unitId: 1, // Unit 1--Learn the basics of Spanish
+                title: 'Nouns',
+                order: 1,
+            },
+            {
+                id: 2,
+                unitId: 1, // Unit 1--Learn the basics of Spanish
+                title: 'Verbs',
+                order: 2,
+            },
+        ])
+
         console.log('Seeding finished')
     } catch (error) {
         console.error(error)
