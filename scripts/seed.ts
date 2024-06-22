@@ -79,14 +79,41 @@ const main = async () => {
                 title: 'Nouns',
                 order: 1,
             },
-            {
-                id: 2,
-                unitId: 1, // Unit 1--Learn the basics of Spanish
-                title: 'Verbs',
-                order: 2,
-            },
+
         ])
 
+        await db.insert(schema.challenges).values([{
+            id: 1,
+            lessonId: 1,// Nouns
+            type: 'SELECT',
+            order: 1,
+            question: 'Which one of these is "the man"?'
+        }])
+
+await  db.insert(schema.challengeOptions).values([
+    {   id: 1,
+        challengeId: 1, // 'Which one of these is "the man"?'
+        correct: true,
+        imageSrc: 'man.svg',
+        audioSrc: 'es_man.mp3',
+        text: 'El hombre'
+    },
+    {id: 2,
+        challengeId: 1, // 'Which one of these is "the man"?'
+        correct: false,
+        imageSrc: 'woman.svg',
+        audioSrc: 'es_woman.mp3',
+        text: 'La mujer'}
+    ,
+    {
+        id: 3,
+        challengeId: 1, // 'Which one of these is "the man"?'
+        correct: false,
+        imageSrc: 'child.svg',
+        audioSrc: 'es_child.mp3',
+        text: 'El chico'
+    }
+])
         console.log('Seeding finished')
     } catch (error) {
         console.error(error)
